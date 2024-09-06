@@ -105,7 +105,7 @@ const Sidebar = () => {
           </Link>
         ) : (
           <Link
-            href="/buy-credit"
+            href="/sign-in"
             className="flex items-center space-x-3 font-normal hover:text-[#B888FF] cursor-pointer pt-6"
           >
             <FaCreditCard />
