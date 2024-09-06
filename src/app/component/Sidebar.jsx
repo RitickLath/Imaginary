@@ -37,7 +37,7 @@ const menus = [
     icon: <FaRuler />,
   },
   {
-    name: "Bg Removal",
+    name: "Background Removal",
     link: "/bg-removal",
     icon: <FaImage />,
   },
@@ -57,10 +57,10 @@ const Sidebar = () => {
   const { userId } = auth();
 
   return (
-    <div className="py-6 pl-6 h-screen border-r-[1.5px] border-[#3A3B3C] flex flex-col justify-between">
+    <div className="py-6 lg:pl-6 pl-3 h-screen border-r-[1.5px] border-[#3A3B3C] flex flex-col justify-between">
       <div>
         <h1 className="text-[#B888FF] font-medium text-xl flex space-x-2 items-center">
-          <IoSparkles /> <span>IMAGINARY</span>
+          <IoSparkles /> <span className="hidden sm:flex">IMAGINARY</span>
         </h1>
 
         <div className="pr-6 border-b-[1.5px] pb-6 border-[#3A3B3C] ">
@@ -68,10 +68,12 @@ const Sidebar = () => {
             <Link
               key={index}
               href={menu.link}
-              className="flex items-center space-x-3 font-normal hover:text-[#B888FF] cursor-pointer pt-6"
+              className="w-full flex items-center space-x-3 font-normal hover:text-[#B888FF] cursor-pointer pt-6"
             >
               {menu.icon}
-              <span>{menu.name}</span>
+              <span className="w-full whitespace-nowrap hidden sm:flex">
+                {menu.name}
+              </span>
             </Link>
           ))}
         </div>
@@ -84,14 +86,14 @@ const Sidebar = () => {
           className="flex items-center space-x-3 font-normal hover:text-[#B888FF] cursor-pointer pt-6"
         >
           <FaUser />
-          <span>Profile</span>
+          <span className="hidden sm:flex">Profile</span>
         </Link>
         <Link
           href="/buy-credit"
           className="flex items-center space-x-3 font-normal hover:text-[#B888FF] cursor-pointer pt-6"
         >
           <FaCreditCard />
-          <span>Buy Credit</span>
+          <span className="hidden sm:flex">Buy Credit</span>
         </Link>
         {userId ? (
           <Link
@@ -99,7 +101,7 @@ const Sidebar = () => {
             className="flex items-center space-x-3 font-normal hover:text-[#B888FF] cursor-pointer pt-6"
           >
             <FaCreditCard />
-            <span>Log Out</span>
+            <span className="hidden sm:flex">Log Out</span>
           </Link>
         ) : (
           <Link
@@ -107,7 +109,7 @@ const Sidebar = () => {
             className="flex items-center space-x-3 font-normal hover:text-[#B888FF] cursor-pointer pt-6"
           >
             <FaCreditCard />
-            <span>Log In</span>
+            <span className="hidden sm:flex">Log In</span>
           </Link>
         )}
       </div>
