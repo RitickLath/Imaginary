@@ -63,7 +63,7 @@ const Sidebar = () => {
           <IoSparkles /> <span className="hidden sm:flex">IMAGINARY</span>
         </h1>
 
-        <div className="pr-6 border-b-[1.5px] pb-6 border-[#3A3B3C] ">
+        <div className="lg:pr-6 pr-3 border-b-[1.5px] pb-6 border-[#3A3B3C] ">
           {menus.map((menu, index) => (
             <Link
               key={index}
@@ -80,7 +80,7 @@ const Sidebar = () => {
       </div>
 
       {/* Bottom Section for Profile and Buy Credit */}
-      <div className="pr-6 pb-6">
+      <div className="lg:pr-6 pr-3 ">
         <Link
           href="/profile"
           className="flex items-center space-x-3 font-normal hover:text-[#B888FF] cursor-pointer pt-6"
