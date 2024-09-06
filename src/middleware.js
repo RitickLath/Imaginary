@@ -8,24 +8,23 @@ const isPublicRoute = createRouteMatcher([
   "/home",
 ]);
 
-const isPublicAPIRoute = createRouteMatcher(["/api/videos"]);
-
 export default clerkMiddleware((auth, req) => {
   const { userId } = auth();
   const currentUrl = new URL(req.url);
   const isHomePage = currentUrl.pathname === "/home";
+  const isLogin = currentUrl.pathname === "/sign-in";
+  const isSignup = currentUrl.pathname === "/sign-up";
 
   // if logged in and trying to access login or signup part redirect to home
-  if (userId && isPublicRoute(req) && !isHomePage) {
+  if (userId && isPublicRoute(req) && (isLogin || isSignup)) {
     return NextResponse.redirect(new URL("/home", req.url));
   }
+  if (!userId) {
+    if (!isPublicRoute(req)) {
+      return NextResponse.redirect(new URL("/sign-up", req.url));
+    }
+  }
 
-  // not logged in
-  // if (!userId) {
-  //   if (!isPublicAPIRoute(req)) {
-  //     return NextResponse.redirect(new URL("/sign-in", req.url));
-  //   }
-  // }
   return NextResponse.next();
 });
 
