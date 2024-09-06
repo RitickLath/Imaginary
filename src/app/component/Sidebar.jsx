@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { auth } from "@clerk/nextjs/server";
-
+import { IoIosLogIn, IoIosLogOut } from "react-icons/io";
 import React from "react";
 import {
   FaHome,
@@ -14,6 +14,7 @@ import {
   FaCreditCard,
 } from "react-icons/fa";
 import { IoSparkles } from "react-icons/io5";
+import { SignOutButton } from "@clerk/nextjs";
 
 const menus = [
   {
@@ -96,19 +97,18 @@ const Sidebar = () => {
           <span className="hidden sm:flex">Buy Credit</span>
         </Link>
         {userId ? (
-          <Link
-            href="/sign-in"
-            className="flex items-center space-x-3 font-normal hover:text-[#B888FF] cursor-pointer pt-6"
-          >
-            <FaCreditCard />
-            <span className="hidden sm:flex">Log Out</span>
-          </Link>
+          <SignOutButton>
+            <div className="flex items-center space-x-3 font-normal hover:text-[#B888FF] cursor-pointer pt-6">
+              <IoIosLogOut />
+              <span className="hidden sm:flex">Log Out</span>
+            </div>
+          </SignOutButton>
         ) : (
           <Link
             href="/sign-in"
             className="flex items-center space-x-3 font-normal hover:text-[#B888FF] cursor-pointer pt-6"
           >
-            <FaCreditCard />
+            <IoIosLogIn />
             <span className="hidden sm:flex">Log In</span>
           </Link>
         )}
