@@ -21,14 +21,15 @@ export default clerkMiddleware((auth, req) => {
   }
 
   // not logged in
-  if (!userId) {
-    if (!isPublicAPIRoute(req) && isPublicAPIRoute(req)) {
-      return NextResponse.redirect(new URL("/sign-in", req.url));
-    }
-  }
+  // if (!userId) {
+  //   if (!isPublicAPIRoute(req)) {
+  //     return NextResponse.redirect(new URL("/sign-in", req.url));
+  //   }
+  // }
   return NextResponse.next();
 });
 
+// default from clerk
 export const config = {
   matcher: [
     // Skip Next.js internals and all static files, unless found in search params
