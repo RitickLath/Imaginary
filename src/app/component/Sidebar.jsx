@@ -12,6 +12,7 @@ import {
   FaFillDrip,
   FaUser,
   FaCreditCard,
+  FaEdit,
 } from "react-icons/fa";
 import { IoSparkles } from "react-icons/io5";
 import { SignOutButton } from "@clerk/nextjs";
@@ -51,6 +52,11 @@ const menus = [
     name: "Generative Fill",
     link: "/generative-fill",
     icon: <FaFillDrip />,
+  },
+  {
+    name: "Generative Replace",
+    link: "/generative-replace",
+    icon: <FaEdit />,
   },
 ];
 
