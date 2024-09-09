@@ -2,6 +2,8 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from "./component/Sidebar";
+import { IoSparkles } from "react-icons/io5";
+import Navbar from "./component/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +18,8 @@ export default function RootLayout({ children }) {
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
-          <div className="w-full overflow-x-hidden min-h-screen bg-black text-white flex">
+          <Navbar />
+          <div className="w-full overflow-x-hidden min-h-screen flex">
             <Sidebar />
             {children}
           </div>

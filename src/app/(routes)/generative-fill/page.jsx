@@ -4,18 +4,19 @@ import { FaFillDrip } from "react-icons/fa";
 const styles = {
   container: "py-6 px-3 lg:px-8 w-full",
   header: "px-4 md:px-10",
-  title: "text-2xl flex space-x-3 items-center text-[#B888FF] font-semibold",
-  formContainer: "mt-8 bg-gray-900 p-6 rounded-lg shadow-md",
-  description: "text-gray-300 mb-6 text-xs lg:text-sm",
-  label: "block text-lg font-medium text-gray-200 mb-2",
+  title:
+    "text-2xl flex space-x-3 items-center text-[var(--primary-purple)] font-semibold",
+  formContainer: "mt-8 bg-[var(--form-background)] p-6 rounded-lg shadow-md",
+  description: "text-[var(--text-muted)] mb-6 text-xs lg:text-sm",
+  label: "block text-lg font-medium text-[var(--form-text)] mb-2",
   inputText:
-    "px-3 py-2 block w-full text-sm text-gray-200 border border-gray-700 rounded-lg bg-gray-800 focus:outline-none focus:ring-2 focus:ring-[#B888FF]",
+    "px-3 py-2 block w-full text-sm text-[var(--input-text)] border border-[var(--input-border)] rounded-lg bg-[var(--input-background)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)]",
   inputFile:
-    "block w-full py-2 text-sm text-gray-400 border border-gray-700 rounded-lg cursor-pointer bg-gray-800 focus:outline-none focus:ring-2 focus:ring-[#B888FF]",
+    "block w-full py-2 text-sm text-[var(--input-placeholder)] border border-[var(--input-border)] rounded-lg cursor-pointer bg-[var(--input-background)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)]",
   select:
-    "block w-full px-2 py-2 text-sm text-gray-200 border border-gray-700 rounded-lg bg-gray-800 focus:outline-none focus:ring-2 focus:ring-[#B888FF]",
+    "block w-full px-2 py-2 text-sm text-[var(--input-text)] border border-[var(--input-border)] rounded-lg bg-[var(--input-background)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)]",
   submitButton:
-    "bg-[#B888FF] text-white px-6 py-2 rounded-lg hover:bg-[#a078f7] focus:outline-none focus:ring-4 focus:ring-purple-500",
+    "bg-[var(--primary-purple)] text-white px-6 py-2 rounded-lg hover:bg-[var(--hover-purple)] focus:outline-none focus:ring-4 focus:ring-[var(--button-focus-ring)]",
 };
 
 const GenerativeFill = () => {

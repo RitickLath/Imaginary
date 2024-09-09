@@ -66,10 +66,6 @@ const Sidebar = () => {
   return (
     <div className="py-6 lg:pl-6 pl-3 h-screen border-r-[1.5px] border-[#3A3B3C] flex flex-col justify-between">
       <div>
-        <h1 className="text-[#B888FF] font-medium text-xl flex space-x-2 items-center">
-          <IoSparkles /> <span className="hidden sm:flex">IMAGINARY</span>
-        </h1>
-
         <div className="lg:pr-6 pr-3 border-b-[1.5px] pb-6 border-[#3A3B3C] ">
           {menus.map((menu, index) => (
             <Link
