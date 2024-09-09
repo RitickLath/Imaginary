@@ -64,9 +64,9 @@ const Sidebar = () => {
   const { userId } = auth();
 
   return (
-    <div className="py-6 lg:pl-6 pl-3 h-screen border-r-[1.5px] border-[#3A3B3C] flex flex-col justify-between">
+    <div className="py-6 bg-[var(--form-background)] lg:pl-6 pl-3 h-screen border-r-[1.5px] border-[var(--bordermargin)] flex flex-col justify-between">
       <div>
-        <div className="lg:pr-6 pr-3 border-b-[1.5px] pb-6 border-[#3A3B3C] ">
+        <div className="lg:pr-6 pr-3 border-b-[1.5px] pb-6 border-[var(--bordermargin)] ">
           {menus.map((menu, index) => (
             <Link
               key={index}

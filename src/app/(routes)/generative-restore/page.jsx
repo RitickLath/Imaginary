@@ -14,7 +14,7 @@ const styles = {
   inputFile:
     "block w-full py-2 text-sm text-gray-400 border border-[var(--form-border)] rounded-lg cursor-pointer bg-[var(--form-background)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)]",
   submitButton:
-    "bg-[var(--primary-purple)] text-white px-6 py-2 rounded-lg hover:bg-[var(--hover-purple)] focus:outline-none focus:ring-4 focus:ring-[var(--button-focus-ring)]",
+    "bg-gradient-to-r from-[#3B1179] to-[#4C2EA5] text-white px-6 py-2 rounded-lg focus:outline-none focus:ring-4 focus:ring-[var(--button-focus-ring)]",
 };
 
 const GenerativeRestore = () => {

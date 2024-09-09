@@ -6,7 +6,8 @@ const styles = {
   header: "px-4 md:px-10",
   title:
     "text-2xl flex space-x-3 items-center text-[var(--primary-purple)] font-semibold",
-  formContainer: "mt-8 bg-[var(--form-background)] p-6 rounded-lg shadow-md",
+  formContainer:
+    "mt-8 bg-[var(--form-background)] p-6 rounded-lg shadow-md border border-[var(--form-border)]",
   description: "text-[var(--text-muted)] mb-6 text-xs lg:text-sm",
   label: "block text-lg font-medium text-[var(--form-text)] mb-2",
   inputText:
@@ -18,7 +19,7 @@ const styles = {
     "w-4 h-4 text-[var(--radio-button)] border-[var(--input-border)] focus:ring-[var(--radio-button)]",
   radioLabel: "ml-2 text-sm font-medium text-[var(--text-muted)]",
   submitButton:
-    "bg-[var(--primary-purple)] text-white px-6 py-2 rounded-lg hover:bg-[var(--hover-purple)] focus:outline-none focus:ring-4 focus:ring-[var(--primary-purple)]",
+    "bg-gradient-to-r from-[#3B1179] to-[#4C2EA5]  text-white px-6 py-2 rounded-lg focus:outline-none focus:ring-4 focus:ring-[var(--primary-purple)]",
 };
 
 const RoundCorner = () => {
@@ -66,9 +67,7 @@ const RoundCorner = () => {
 
           {/* Mode of Transform */}
           <div>
-            <h2 className="text-lg font-medium text-gray-200 mb-3">
-              Mode of Transform
-            </h2>
+            <h2 className="text-lg font-medium mb-3">Mode of Transform</h2>
             <div className={styles.radioContainer}>
               <input
                 type="radio"

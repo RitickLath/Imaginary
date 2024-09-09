@@ -12,7 +12,9 @@ const Navbar = () => {
   };
 
   return (
-    <div className={`py-4 px-4 lg:px-6 border-b-[1.5px] border-[#3A3B3C]`}>
+    <div
+      className={`py-4 px-4 lg:px-6 border-b-[1.5px] border-[var(--bordermargin)] bg-[var(--form-background)]`}
+    >
       <div className="flex justify-between items-center">
         <h1 className="text-[var(--primary-purple)] font-medium text-xl flex space-x-2 items-center">
           <IoSparkles />
@@ -21,7 +23,7 @@ const Navbar = () => {
 
         <button
           onClick={toggleMode}
-          className={`flex items-center space-x-2 px-3 py-1 rounded-lg text-white bg-[var(--primary-purple)]  hover:bg-[var(--hover-purple)]`}
+          className={`flex items-center space-x-2 px-3 py-1 rounded-lg text-white bg-gradient-to-r from-[#3B1179] to-[#4C2EA5]`}
         >
           {isDarkMode ? <FaSun /> : <FaMoon />}
           <span className="hidden sm:block">

@@ -11,25 +11,25 @@
   --description-text: #555555;
   --button-focus-ring: #b3a7ff;
   --input-border: #cccccc;
-  /* Default Text and Background Colors */
   --text-color: #645d5d;
   --background-color: #ffffff;
+  --bordermargin: #cccccc;
 }
 
 /* Dark Mode Styles */
 .dark-mode {
   --primary-purple: #b888ff;
   --hover-purple: #a078f7;
-  --form-background: #2d3748; /* Equivalent to bg-gray-800 */
-  --form-border: #4a5568; /* Equivalent to border-gray-700 */
+  --form-background: #252525; /* Equivalent to bg-gray-800 */
+  --form-border: #3A3B3C; /* Equivalent to border-gray-700 */
   --form-text: #edf2f7; /* Equivalent to text-gray-200 */
   --description-text: #e2e8f0; /* Equivalent to text-gray-300 */
-  --button-focus-ring: #9f7aea; 
-  --input-border: #cccccc;
+  --button-focus-ring: #9f7aea;
+  --input-border: #3A3B3C;
   --text-color: #edf2f7;
-  --background-color: #000000;
+  --background-color: #1f1f1f;
+  --bordermargin: #3A3B3C;
 }
-
 
 body {
   background-color: var(--background-color);
