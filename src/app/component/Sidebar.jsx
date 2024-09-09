@@ -64,14 +64,14 @@ const Sidebar = () => {
   const { userId } = auth();
 
   return (
-    <div className="py-6 bg-[var(--form-background)] lg:pl-6 pl-3 h-screen border-r-[1.5px] border-[var(--bordermargin)] flex flex-col justify-between">
-      <div>
+    <div className="fixed w-[3rem] sm:w-[14rem] bg-[var(--form-background)] h-screen border-r-[1.5px] border-[var(--bordermargin)] flex flex-col">
+      <div className=" bg-[var(--form-background)]">
         <div className="lg:pr-6 pr-3 border-b-[1.5px] pb-6 border-[var(--bordermargin)] ">
           {menus.map((menu, index) => (
             <Link
               key={index}
               href={menu.link}
-              className="w-full flex items-center space-x-3 font-normal hover:text-[#B888FF] cursor-pointer pt-6"
+              className="pl-3 lg:pl-6 w-full flex items-center space-x-3 font-normal hover:text-[#B888FF] cursor-pointer pt-4"
             >
               {menu.icon}
               <span className="w-full whitespace-nowrap hidden sm:flex">
@@ -83,24 +83,24 @@ const Sidebar = () => {
       </div>
 
       {/* Bottom Section for Profile and Buy Credit */}
-      <div className="lg:pr-6 pr-3 ">
+      <div className="pl-3 lg:pl-6 bg-[var(--form-background)] lg:pr-6 pr-3 ">
         <Link
           href="/profile"
-          className="flex items-center space-x-3 font-normal hover:text-[#B888FF] cursor-pointer pt-6"
+          className="flex items-center space-x-3 font-normal hover:text-[#B888FF] cursor-pointer pt-4"
         >
           <FaUser />
           <span className="hidden sm:flex">Profile</span>
         </Link>
         <Link
           href="/buy-credit"
-          className="flex items-center space-x-3 font-normal hover:text-[#B888FF] cursor-pointer pt-6"
+          className="flex items-center space-x-3 font-normal hover:text-[#B888FF] cursor-pointer pt-4"
         >
           <FaCreditCard />
           <span className="hidden sm:flex">Buy Credit</span>
         </Link>
         {userId ? (
           <SignOutButton>
-            <div className="flex items-center space-x-3 font-normal hover:text-[#B888FF] cursor-pointer pt-6">
+            <div className="flex items-center space-x-3 font-normal hover:text-[#B888FF] cursor-pointer pt-4">
               <IoIosLogOut />
               <span className="hidden sm:flex">Log Out</span>
             </div>
@@ -108,7 +108,7 @@ const Sidebar = () => {
         ) : (
           <Link
             href="/sign-in"
-            className="flex items-center space-x-3 font-normal hover:text-[#B888FF] cursor-pointer pt-6"
+            className="flex items-center space-x-3 font-normal hover:text-[#B888FF] cursor-pointer pt-4"
           >
             <IoIosLogIn />
             <span className="hidden sm:flex">Log In</span>

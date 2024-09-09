@@ -19,9 +19,12 @@ export default function RootLayout({ children }) {
       <html lang="en">
         <body className={inter.className}>
           <Navbar />
-          <div className="w-full overflow-x-hidden min-h-screen flex">
+          <div
+            style={{ minHeight: "calc(100vh - 4rem)" }}
+            className="mt-[4rem] w-full overflow-x-hidden min-h-screen flex"
+          >
             <Sidebar />
-            {children}
+            <div className="pl-[3rem] sm:pl-[14rem]">{children}</div>
           </div>
         </body>
       </html>

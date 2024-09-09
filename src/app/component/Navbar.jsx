@@ -13,7 +13,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`py-4 px-4 lg:px-6 border-b-[1.5px] border-[var(--bordermargin)] bg-[var(--form-background)]`}
+      className={`fixed top-0 left-0 w-full h-[4rem] py-4 px-4 lg:px-6 border-b-[1.5px] border-[var(--bordermargin)] bg-[var(--form-background)]`}
     >
       <div className="flex justify-between items-center">
         <h1 className="text-[var(--primary-purple)] font-medium text-xl flex space-x-2 items-center">
