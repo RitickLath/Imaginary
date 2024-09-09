@@ -4,11 +4,11 @@ import { IoSparkles } from "react-icons/io5";
 import { FaSun, FaMoon } from "react-icons/fa";
 
 const Navbar = () => {
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isLightMode, setIsLightMode] = useState(false);
 
   const toggleMode = () => {
-    setIsDarkMode(!isDarkMode);
-    document.body.classList.toggle("dark-mode", !isDarkMode);
+    setIsLightMode(!isLightMode);
+    document.body.classList.toggle("light-mode", !isLightMode);
   };
 
   return (
@@ -23,11 +23,11 @@ const Navbar = () => {
 
         <button
           onClick={toggleMode}
-          className={`flex items-center space-x-2 px-3 py-1 rounded-lg text-white bg-gradient-to-r from-[#3B1179] to-[#4C2EA5]`}
+          className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-white bg-gradient-to-r from-[#3B1179] to-[#4C2EA5]`}
         >
-          {isDarkMode ? <FaSun /> : <FaMoon />}
+          {isLightMode ? <FaSun /> : <FaMoon />}
           <span className="hidden sm:block">
-            {isDarkMode ? "Light Mode" : "Dark Mode"}
+            {isLightMode ? "Dark Mode" : "Light Mode"}
           </span>
         </button>
       </div>
