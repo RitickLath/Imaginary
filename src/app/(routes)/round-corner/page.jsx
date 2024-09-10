@@ -19,7 +19,7 @@ const styles = {
     "w-4 h-4 text-[var(--radio-button)] border-[var(--input-border)] focus:ring-[var(--radio-button)]",
   radioLabel: "ml-2 text-sm font-medium text-[var(--text-muted)]",
   submitButton:
-    "bg-gradient-to-r from-[var(--from)] to-[var(--to)]   text-white px-6 py-2 rounded-lg focus:outline-none focus:ring-4 focus:ring-[var(--primary-purple)]",
+    "bg-gradient-to-r from-[var(--from)] to-[var(--to)]     px-6 py-2 rounded-lg focus:outline-none focus:ring-4 focus:ring-[var(--primary-purple)]",
 };
 
 const RoundCorner = () => {

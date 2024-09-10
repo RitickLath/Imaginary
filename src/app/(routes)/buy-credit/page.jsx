@@ -17,7 +17,7 @@ const styles = {
   buttonFree:
     "bg-gray-300 text-gray-700 px-6 py-2 rounded-lg cursor-not-allowed",
   buttonBuy:
-    "bg-gradient-to-r from-[var(--from)] to-[var(--to)]  text-white px-6 py-2 rounded-lg focus:outline-none focus:ring-4 focus:ring-[var(--button-focus-ring)] hover:from-[var(--from)][#5c33a8] hover:to-[var(--to)]#6e44bb]",
+    "bg-gradient-to-r from-[var(--from)] to-[var(--to)]    px-6 py-2 rounded-lg focus:outline-none focus:ring-4 focus:ring-[var(--button-focus-ring)] hover:from-[var(--from)][#5c33a8] hover:to-[var(--to)]#6e44bb]",
 };
 
 const BuyCredit = () => {

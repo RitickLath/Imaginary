@@ -6,12 +6,12 @@ const VideoCard = ({ title, posterUrl, videoUrl }) => {
 
   return (
     <div
-      className="w-full max-w-[220px] md:max-w-[260px] lg:max-w-[280px] bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-lg overflow-hidden relative transition-transform duration-300 transform hover:scale-105"
+      className="w-full max-w-[220px] md:max-w-[260px] lg:max-w-[280px] bg-[var(--background-color)] rounded-lg shadow-lg overflow-hidden relative transition-transform duration-300 transform hover:scale-105"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Video or Poster */}
-      <div className="relative overflow-hidden aspect-w-16 aspect-h-9 bg-gray-200 dark:bg-gray-700 group">
+      <div className="relative overflow-hidden aspect-w-16 aspect-h-9 group">
         {isHovered ? (
           <video
             poster={posterUrl}
@@ -37,7 +37,7 @@ const VideoCard = ({ title, posterUrl, videoUrl }) => {
             isHovered ? "opacity-0" : "opacity-100"
           }`}
         >
-          <button className="bg-white p-2 rounded-full shadow-lg text-gray-700 hover:bg-gray-200">
+          <button className=" bg-[var(--background-color)] p-2 rounded-full shadow-lg  ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -58,7 +58,7 @@ const VideoCard = ({ title, posterUrl, videoUrl }) => {
 
       {/* Card Footer with Title */}
       <div className="p-4 text-center bg-gradient-to-r from-[var(--from)] to-[var(--to)] ">
-        <h3 className="text-sm md:text-lg font-bold text-white">{title}</h3>
+        <h3 className="text-sm md:text-lg font-bold  ">{title}</h3>
       </div>
     </div>
   );

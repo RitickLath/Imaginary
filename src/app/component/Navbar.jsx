@@ -9,7 +9,7 @@ const navbarStyles = {
   title:
     "text-[var(--primary-purple)] font-medium text-xl flex space-x-2 items-center",
   button:
-    "flex items-center space-x-2 px-3 py-2 rounded-lg text-white bg-gradient-to-r from-[var(--from)] to-[var(--to)] ",
+    "flex items-center space-x-2 px-3 py-2 rounded-lg shadow-md bg-gradient-to-r from-[var(--from)] to-[var(--to)] ",
   buttonText: "hidden sm:block",
 };
 
