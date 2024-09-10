@@ -24,7 +24,7 @@ const facilities = [
 export default function Home() {
   return (
     <div className="py-6 px-3 lg:px-8 w-full flex flex-col items-center">
-      <div className="px-4 md:px-10 bg-gradient-to-r from-[#3B1179] to-[#4C2EA5]  rounded-lg shadow-md  w-full md:w-[80%] flex flex-col items-center">
+      <div className="px-4 md:px-10 bg-gradient-to-r from-[var(--from)] to-[var(--to)]  rounded-lg shadow-md  w-full md:w-[80%] flex flex-col items-center">
         <h1 className="text-xl lg:text-3xl lg:font-semibold text-center max-w-[400px] text-white mt-6 lg:mt-12 ">
           Bring Your Creative Vision <br /> to Life with Imaginary
         </h1>

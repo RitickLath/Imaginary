@@ -16,7 +16,7 @@ const styles = {
   slider:
     "w-full border border-[var(--form-border)] py-2  bg-[var(--form-background)] rounded-lg cursor-pointer appearance-none focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)]",
   submitButton:
-    "bg-gradient-to-r from-[#3B1179] to-[#4C2EA5]text-white px-6 py-2 rounded-lg focus:outline-none focus:ring-4 focus:ring-[var(--button-focus-ring)]",
+    "bg-gradient-to-r from-[var(--from)] to-[var(--to)] text-white px-6 py-2 rounded-lg focus:outline-none focus:ring-4 focus:ring-[var(--button-focus-ring)]",
 };
 
 const Sharpen = () => {

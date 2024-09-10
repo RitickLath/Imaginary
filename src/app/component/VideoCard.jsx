@@ -57,7 +57,7 @@ const VideoCard = ({ title, posterUrl, videoUrl }) => {
       </div>
 
       {/* Card Footer with Title */}
-      <div className="p-4 text-center bg-gradient-to-r from-[#3B1179] to-[#4C2EA5]">
+      <div className="p-4 text-center bg-gradient-to-r from-[var(--from)] to-[var(--to)] ">
         <h3 className="text-sm md:text-lg font-bold text-white">{title}</h3>
       </div>
     </div>
@@ -65,3 +65,5 @@ const VideoCard = ({ title, posterUrl, videoUrl }) => {
 };
 
 export default VideoCard;
+
+//

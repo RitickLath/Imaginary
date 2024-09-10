@@ -6,8 +6,7 @@ const styles = {
   header: "px-4 md:px-10",
   title:
     "text-2xl flex space-x-3 items-center text-[var(--primary-purple)] font-semibold",
-  cardContainer:
-    "grid w-full grid-cols-1 md:grid-cols-3 gap-6 mt-8",
+  cardContainer: "grid w-full grid-cols-1 md:grid-cols-3 gap-6 mt-8",
   card: "bg-white dark:bg-[var(--form-background)] p-6 rounded-lg shadow-md flex flex-col items-center space-y-4",
   price: "text-4xl font-bold",
   description: "text-gray-600 dark:text-gray-300 mb-4",
@@ -18,7 +17,7 @@ const styles = {
   buttonFree:
     "bg-gray-300 text-gray-700 px-6 py-2 rounded-lg cursor-not-allowed",
   buttonBuy:
-    "bg-gradient-to-r from-[#3B1179] to-[#4C2EA5] text-white px-6 py-2 rounded-lg focus:outline-none focus:ring-4 focus:ring-[var(--button-focus-ring)] hover:from-[#5c33a8] hover:to-[#6e44bb]",
+    "bg-gradient-to-r from-[var(--from)] to-[var(--to)]  text-white px-6 py-2 rounded-lg focus:outline-none focus:ring-4 focus:ring-[var(--button-focus-ring)] hover:from-[var(--from)][#5c33a8] hover:to-[var(--to)]#6e44bb]",
 };
 
 const BuyCredit = () => {

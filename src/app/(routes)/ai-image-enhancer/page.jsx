@@ -18,7 +18,7 @@ const styles = {
     "w-4 h-4 text-[var(--radio-color)] border-[var(--form-border)] focus:ring-[var(--radio-focus-color)]",
   radioLabel: "ml-2 text-sm font-medium text-[var(--radio-label)]",
   submitButton:
-    "bg-gradient-to-r from-[#3B1179] to-[#4C2EA5] text-white px-6 py-2 rounded-lg focus:outline-none focus:ring-4 focus:ring-[var(--button-focus-ring)]",
+    "bg-gradient-to-r from-[var(--from)] to-[var(--to)]  text-white px-6 py-2 rounded-lg focus:outline-none focus:ring-4 focus:ring-[var(--button-focus-ring)]",
 };
 
 const AIImageEnhancer = () => {
