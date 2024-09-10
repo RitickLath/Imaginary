@@ -6,7 +6,7 @@ const VideoCard = ({ title, posterUrl, videoUrl }) => {
 
   return (
     <div
-      className="w-full max-w-[180px] sm:max-w-[220px] md:max-w-[260px] lg:max-w-[280px] bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-lg overflow-hidden relative transition-transform duration-300 transform hover:scale-105"
+      className="w-full max-w-[220px] md:max-w-[260px] lg:max-w-[280px] bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-lg overflow-hidden relative transition-transform duration-300 transform hover:scale-105"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
