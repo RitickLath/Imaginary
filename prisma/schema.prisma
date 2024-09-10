@@ -1,0 +1,32 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model SaaSUser {
+  id           Int                 @id @default(autoincrement())  // Unique user ID
+  clerkId      String              @unique                       // Clerk ID for authentication
+  credits      Int                                               // Available credits for the user
+  totalEdit    Int                                               // Total number of edits the user has made
+  editedUrls   String[]                                          // URLs of edited photos
+  transactions SaaSCreditTransactions[]                             // Relation to the CreditTransactions model
+  createdAt    DateTime            @default(now())               // Timestamp for user creation
+}
+
+model SaaSCreditTransactions {
+  id        Int      @id @default(autoincrement())  // Unique ID for each credit transaction
+  userId    Int                                    // Foreign key pointing to the User
+  user      SaaSUser     @relation(fields: [userId], references: [id])  // Establishing the relation with User model
+  amount    Int                                    // Amount of credits (can be positive or negative)
+  createdAt DateTime @default(now())               // Timestamp for the transaction
+}
