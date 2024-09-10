@@ -1,4 +1,6 @@
 import { FaHome, FaCrop, FaMagic, FaRuler, FaImage } from "react-icons/fa";
+import VideoCard from "../component/VideoCard";
+import { videoCardsData } from "../constants/VideoImage";
 
 const facilities = [
   {
@@ -38,6 +40,19 @@ export default function Home() {
                 {facility.name}
               </span>
             </div>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <div className="p-4 flex flex-wrap gap-4">
+          {videoCardsData.map((data, k) => (
+            <VideoCard
+              key={k}
+              title={data.title}
+              posterUrl={data.posterUrl}
+              videoUrl={data.videoUrl}
+            />
           ))}
         </div>
       </div>

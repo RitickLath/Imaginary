@@ -2,15 +2,23 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from "./component/Sidebar";
-import { IoSparkles } from "react-icons/io5";
 import Navbar from "./component/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
+// Metadata for the app
 export const metadata = {
   title: "Imaginary",
   description:
     "Transform your images with ease using our user-friendly interface and state-of-the-art AI algorithms. Our tools are designed to cater to both casual users and professional photographers, providing high-quality results that save you time and effort. Experience the future of photo editing with Imaginary and elevate your images to new heights.",
+};
+
+// Styles
+const layoutStyles = {
+  bodyWrapper: "mt-[4rem] w-full overflow-x-hidden min-h-screen flex",
+  sidebarMargin: "ml-[3rem] sm:ml-[15rem] flex justify-center w-full",
+  contentContainer: "w-full max-w-5xl",
+  minHeight: { minHeight: "calc(100vh - 4rem)" },
 };
 
 export default function RootLayout({ children }) {
@@ -20,11 +28,13 @@ export default function RootLayout({ children }) {
         <body className={inter.className}>
           <Navbar />
           <div
-            style={{ minHeight: "calc(100vh - 4rem)" }}
-            className="mt-[4rem] w-full overflow-x-hidden min-h-screen flex"
+            style={layoutStyles.minHeight}
+            className={layoutStyles.bodyWrapper}
           >
             <Sidebar />
-            <div className="pl-[3rem] sm:pl-[14rem]">{children}</div>
+            <div className={layoutStyles.sidebarMargin}>
+              <div className={layoutStyles.contentContainer}>{children}</div>
+            </div>
           </div>
         </body>
       </html>
