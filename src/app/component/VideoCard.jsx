@@ -6,12 +6,12 @@ const VideoCard = ({ title, posterUrl, videoUrl }) => {
 
   return (
     <div
-      className="w-[220px] lg:w-[280px] bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-lg overflow-hidden relative transition-transform duration-300 transform hover:scale-105"
+      className="w-full max-w-[180px] sm:max-w-[220px] md:max-w-[260px] lg:max-w-[280px] bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-lg overflow-hidden relative transition-transform duration-300 transform hover:scale-105"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Video or Poster */}
-      <div className="w-full h-[180px] lg:h-[250px] overflow-hidden bg-gray-200 dark:bg-gray-700 relative group">
+      <div className="relative overflow-hidden aspect-w-16 aspect-h-9 bg-gray-200 dark:bg-gray-700 group">
         {isHovered ? (
           <video
             poster={posterUrl}
@@ -58,7 +58,7 @@ const VideoCard = ({ title, posterUrl, videoUrl }) => {
 
       {/* Card Footer with Title */}
       <div className="p-4 text-center bg-gradient-to-r from-[#3B1179] to-[#4C2EA5]">
-        <h3 className="text-lg font-bold text-white">{title}</h3>
+        <h3 className="text-sm md:text-lg font-bold text-white">{title}</h3>
       </div>
     </div>
   );

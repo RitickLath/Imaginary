@@ -45,7 +45,7 @@ export default function Home() {
       </div>
 
       <div>
-        <div className="p-4 flex flex-wrap gap-4">
+        <div className="p-4 flex flex-wrap gap-4 justify-center">
           {videoCardsData.map((data, k) => (
             <VideoCard
               key={k}
