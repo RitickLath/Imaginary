@@ -53,7 +53,6 @@ export default function Home() {
       <div className="px-4 md:px-10 bg-gradient-to-r from-[var(--from)] to-[var(--to)]  rounded-lg shadow-md  w-full md:w-[80%] flex flex-col items-center">
         <h1 className="text-xl font-serif font-semibold lg:text-3xl lg:font-semibold text-center max-w-[500px]   mt-6 lg:mt-12 ">
           IMAGINARY: REIMAGINE YOUR SHOTS
-          {/* Bring Your Creative Vision <br /> to Life with Imaginary */}
         </h1>
 
         {/* AI Facilities Section */}
