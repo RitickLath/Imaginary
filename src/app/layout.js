@@ -15,12 +15,10 @@ export const metadata = {
 
 // Styles
 const layoutStyles = {
-  bodyWrapper: "mt-[4rem] w-full overflow-x-hidden min-h-screen flex flex-col",
+  bodyWrapper: "mt-[4rem] w-full overflow-x-hidden min-h-screen flex",
   sidebarMargin: "ml-[3rem] sm:ml-[15rem] flex justify-center w-full",
   contentContainer: "w-full max-w-5xl",
   minHeight: { minHeight: "calc(100vh - 4rem)" },
-  footer:
-    "mt-auto text-[#b888ff] ml-[3rem] sm:ml-[15rem] text-center text-sm text-gray-600 py-3",
 };
 
 export default function RootLayout({ children }) {
@@ -35,12 +33,14 @@ export default function RootLayout({ children }) {
           >
             <Sidebar />
             <div className={layoutStyles.sidebarMargin}>
-              <div className={layoutStyles.contentContainer}>{children}</div>
+              <div className={layoutStyles.contentContainer}>
+                {children}
+                <h1 className="align-text-bottom text-center pb-2 text-[#b888ff]">
+                  Made with 💖 by Ritick Lath
+                </h1>
+              </div>
             </div>
           </div>
-          <footer className={layoutStyles.footer}>
-            Made with 💖 by Ritick Lath
-          </footer>
         </body>
       </html>
     </ClerkProvider>
