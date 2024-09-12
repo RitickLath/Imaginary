@@ -1,3 +1,4 @@
+// working
 "use client";
 
 import { CldUploadWidget } from "next-cloudinary";
@@ -23,26 +24,49 @@ const styles = {
     "border-dashed border-4 border-[var(--primary-purple)] flex items-center justify-center h-48 rounded-lg cursor-pointer hover:border-[var(--to)] transition-colors duration-300",
   submitButton:
     "bg-gradient-to-r from-[var(--from)] to-[var(--to)] px-6 py-2 rounded-lg focus:outline-none focus:ring-4 focus:ring-[var(--button-focus-ring)]",
+  imagesContainer:
+    "mt-6 flex flex-col sm:flex-row space-y-6 sm:space-y-0 sm:space-x-6",
+  imageBox: "w-full sm:w-1/2 flex flex-col items-center",
+  img: "w-[300px] h-auto max-h-64 object-cover rounded-lg",
 };
 
 const Sharpen = () => {
   const [mode, setMode] = useState("sharp");
   const [strength, setStrength] = useState(1000);
   const [imageUpload, setImageUpload] = useState("");
+  const [publicId, setPublicId] = useState("");
+  const [imageFormat, setImageFormat] = useState("");
+  const [transformedUrl, setTransformedUrl] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Construct the transformation URL based on the selected mode and strength
+    const transformation = `e_sharpen:${strength}`;
+    const transformedImageUrl = `https://res.cloudinary.com/drgztn5ek/image/upload/${transformation}/${publicId}.${imageFormat}`;
+
+    setTransformedUrl(transformedImageUrl);
+
     console.log("Mode:", mode);
     console.log("Strength:", strength);
     console.log("Uploaded Image URL:", imageUpload);
-    alert("Sharpen transformation applied! Check the console for details.");
+
+    console.log("Transformed Image URL:", transformedImageUrl);
+    alert("Sharpen transformation applied! Check the transformed image.");
   };
 
   const handleUpload = (result) => {
     if (result.event === "success") {
       const uploadedUrl = result.info.secure_url;
+      const public_id = result.info.public_id;
+      const format = uploadedUrl.split(".").pop(); 
+
       setImageUpload(uploadedUrl);
+      setPublicId(public_id);
+      setImageFormat(format); 
+      console.log(public_id);
       console.log("Uploaded image URL:", uploadedUrl);
+      console.log("Image Format:", format);
     }
   };
 
@@ -134,21 +158,31 @@ const Sharpen = () => {
         </form>
       </div>
 
-      {/* Uploaded Image Preview */}
       {imageUpload && (
-        <div className="mt-8">
-          <h2 className="text-lg font-medium mb-3">Uploaded Image</h2>
-          <div className="w-full sm:w-1/2 flex flex-col items-center justify-center border border-gray-300 h-64 rounded-lg bg-gray-100">
-            {imageUpload ? (
-              <img
-                src={imageUpload}
-                alt="Uploaded Image"
-                className="w-full h-auto object-cover rounded-lg"
-              />
-            ) : (
-              <p className="text-gray-500">No image uploaded yet.</p>
-            )}
+        <div className={styles.imagesContainer}>
+          <div className={styles.imageBox}>
+            <h2 className="text-lg font-medium mb-3">Original Image</h2>
+            <img src={imageUpload} alt="Uploaded" className={styles.img} />
           </div>
+
+          {/* Transformed Image Display */}
+          {transformedUrl && (
+            <div className={styles.imageBox}>
+              <h2 className="text-lg font-medium mb-3">Transformed Image</h2>
+              <img
+                src={transformedUrl}
+                alt="Transformed"
+                className="w-[300px]"
+              />
+              <a
+                href={transformedUrl}
+                download
+                className="text-blue-500 hover:underline mt-3"
+              >
+                Download
+              </a>
+            </div>
+          )}
         </div>
       )}
     </div>

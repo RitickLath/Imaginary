@@ -1,3 +1,4 @@
+// working
 "use client";
 
 import { CldUploadWidget } from "next-cloudinary";
@@ -21,27 +22,35 @@ const styles = {
     "  px-4 py-2 rounded-lg shadow hover:opacity-90 transition-opacity focus:outline-none focus:ring-4 focus:ring-[var(--primary-purple)]",
   imagesContainer:
     "mt-6 flex flex-col sm:flex-row space-y-6 sm:space-y-0 sm:space-x-6",
-  imageBox:
-    "w-full sm:w-1/2 flex flex-col items-center justify-center border border-gray-300 h-64 rounded-lg bg-gray-100",
-  img: "w-full h-auto max-h-64 object-cover rounded-lg",
+  imageBox: "w-full sm:w-1/2 flex flex-col items-center",
+  img: "w-[300px] h-auto max-h-64 object-cover rounded-lg",
   altText: "text-gray-500",
 };
 
 const AIImageEnhancer = () => {
   const [title, setTitle] = useState("");
   const [imageUpload, setImageUpload] = useState("");
+  const [EnhancedImageUrl, setEnhancedImageUrl] = useState("");
+  const [imageFormat, setImageFormat] = useState("");
+  const [publicId, setPublicId] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Title:", title);
     console.log("Uploaded Image URL:", imageUpload);
+    const transformaedUrl = `https://res.cloudinary.com/drgztn5ek/image/upload/e_enhance/${publicId}.${imageFormat}`;
+    setEnhancedImageUrl(transformaedUrl);
     alert("Image enhancement requested! Check the console for logged values.");
   };
 
   const handleUpload = (result) => {
     if (result.event === "success") {
       const uploadedUrl = result.info.secure_url;
+      const uploadedPublicId = result.info.public_id;
+      const format = uploadedUrl.split(".").pop();
       setImageUpload(uploadedUrl);
+      setImageFormat(format);
+      setPublicId(uploadedPublicId);
       console.log("Uploaded image URL:", uploadedUrl);
     }
   };
@@ -117,22 +126,40 @@ const AIImageEnhancer = () => {
 
       {/* Uploaded Image Display */}
       {imageUpload && (
-        <div className={styles.container}>
-          <div className={styles.imagesContainer}>
-            <div className={styles.imageBox}>
-              <h2 className="text-lg font-medium mb-3">Original Image</h2>
-              {imageUpload ? (
-                <img src={imageUpload} alt="Uploaded" className={styles.img} />
-              ) : (
-                <p className={styles.altText}>Awaited...</p>
-              )}
-            </div>
-
-            <div className={styles.imageBox}>
-              <h2 className="text-lg font-medium mb-3">Enhanced Image</h2>
-              <div className="w-full h-48 bg-gray-200 flex items-center justify-center rounded-lg">
-                <span className="text-gray-500">Enhanced Image Preview</span>
+        <div className={styles.imagesContainer}>
+          <div className={styles.container}>
+            <div className={styles.imagesContainer}>
+              <div className={styles.imageBox}>
+                <h2 className="text-lg font-medium mb-3">Original Image</h2>
+                {imageUpload ? (
+                  <img
+                    src={imageUpload}
+                    alt="Uploaded"
+                    className={styles.img}
+                  />
+                ) : (
+                  <p className={styles.altText}>Awaited...</p>
+                )}
               </div>
+
+              {/* Filled Image Display */}
+              {EnhancedImageUrl && (
+                <div className={styles.imageBox}>
+                  <h2 className="text-lg font-medium mb-3">Filled Image</h2>
+                  <img
+                    src={EnhancedImageUrl}
+                    alt="Filled Image"
+                    className="w-[300px]"
+                  />
+                  <a
+                    href={EnhancedImageUrl}
+                    download
+                    className="text-blue-500 hover:underline mt-3"
+                  >
+                    Download
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -1,3 +1,4 @@
+// working
 "use client";
 
 import { CldUploadWidget } from "next-cloudinary";
@@ -21,10 +22,8 @@ const styles = {
     "  px-4 py-2 rounded-lg shadow hover:opacity-90 transition-opacity focus:outline-none focus:ring-4 focus:ring-[var(--primary-purple)]",
   imagesContainer:
     "mt-6 flex flex-col sm:flex-row space-y-6 sm:space-y-0 sm:space-x-6",
-  imageBox:
-    "w-full sm:w-1/2 flex flex-col items-center justify-center border border-gray-300 h-64 rounded-lg bg-gray-100",
-  img: "w-full h-auto max-h-64 object-cover rounded-lg",
-  altText: "text-gray-500",
+  imageBox: "w-full sm:w-1/2 flex flex-col items-center",
+  img: "w-[300px] h-auto max-h-64 object-cover rounded-lg",
 };
 
 const GenerativeReplace = () => {
@@ -32,22 +31,36 @@ const GenerativeReplace = () => {
   const [itemToReplace, setItemToReplace] = useState("");
   const [replaceWith, setReplaceWith] = useState("");
   const [imageUpload, setImageUpload] = useState("");
+  const [publicId, setPublicId] = useState("");
+  const [transformedUrl, setTransformedUrl] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Replace spaces with "%20" for URL encoding
+    const encodedItemToReplace = itemToReplace.replace(/\s+/g, "%20");
+    const encodedReplaceWith = replaceWith.replace(/\s+/g, "%20");
+
+    // Generate the Cloudinary URL with the transformation based on user input
+    const transformedImageUrl = `https://res.cloudinary.com/drgztn5ek/image/upload/e_gen_replace:from_${encodedItemToReplace};to_${encodedReplaceWith}/${publicId}.png`;
+
+    setTransformedUrl(transformedImageUrl); // Update the transformed image URL
+
     console.log("Title:", title);
     console.log("Item to Replace:", itemToReplace);
     console.log("Replace With:", replaceWith);
     console.log("Uploaded Image URL:", imageUpload);
-    alert(
-      "Generative replace action requested! Check the console for logged values."
-    );
+    console.log("Transformed Image URL:", transformedImageUrl);
+
+    alert("Generative Replace action applied! Check the transformed image.");
   };
 
   const handleUpload = (result) => {
     if (result.event === "success") {
       const uploadedUrl = result.info.secure_url;
+      const public_id = result.info.public_id;
       setImageUpload(uploadedUrl);
+      setPublicId(public_id);
       console.log("Uploaded image URL:", uploadedUrl);
     }
   };
@@ -155,26 +168,34 @@ const GenerativeReplace = () => {
 
       {/* Uploaded Image Display */}
       {imageUpload && (
-        <div className={styles.container}>
-          <div className={styles.imagesContainer}>
-            <div className={styles.imageBox}>
-              <h2 className="text-lg font-medium mb-3">Original Image</h2>
-              {imageUpload ? (
-                <img src={imageUpload} alt="Uploaded" className={styles.img} />
-              ) : (
-                <p className={styles.altText}>Awaited...</p>
-              )}
-            </div>
-
-            <div className={styles.imageBox}>
-              <h2 className="text-lg font-medium mb-3">
-                Replaced Object Preview
-              </h2>
-              <div className="w-full h-48 bg-gray-200 flex items-center justify-center rounded-lg">
-                <span className="text-gray-500">Processed Image Preview</span>
-              </div>
-            </div>
+        <div className={styles.imagesContainer}>
+          <div className={styles.imageBox}>
+            <h2 className="text-lg font-medium mb-3">Original Image</h2>
+            {imageUpload ? (
+              <img src={imageUpload} alt="Uploaded" className={styles.img} />
+            ) : (
+              <p className={styles.altText}>Awaited...</p>
+            )}
           </div>
+
+          {/* Restored Image Display */}
+          {transformedUrl && (
+            <div className={styles.imageBox}>
+              <h2 className="text-lg font-medium mb-3">Transformed Image</h2>
+              <img
+                src={transformedUrl}
+                alt="Transformed"
+                className="w-[300px]"
+              />
+              <a
+                href={transformedUrl}
+                download
+                className="text-blue-500 hover:underline mt-3"
+              >
+                Download
+              </a>
+            </div>
+          )}
         </div>
       )}
     </div>

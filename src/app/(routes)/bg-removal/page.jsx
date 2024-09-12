@@ -1,3 +1,4 @@
+// not working
 "use client";
 
 import { CldUploadWidget } from "next-cloudinary";
@@ -18,30 +19,43 @@ const styles = {
   uploadArea:
     "border-dashed border-4 border-[var(--primary-purple)] flex items-center justify-center h-48 rounded-lg cursor-pointer hover:border-[var(--to)] transition-colors duration-300",
   uploadButton:
-    "  px-4 py-2 rounded-lg shadow hover:opacity-90 transition-opacity focus:outline-none focus:ring-4 focus:ring-[var(--primary-purple)]",
+    "px-4 py-2 rounded-lg shadow hover:opacity-90 transition-opacity focus:outline-none focus:ring-4 focus:ring-[var(--primary-purple)]",
   imagesContainer:
     "mt-6 flex flex-col sm:flex-row space-y-6 sm:space-y-0 sm:space-x-6",
-  imageBox:
-    "w-full sm:w-1/2 flex flex-col items-center justify-center border border-gray-300 h-64 rounded-lg bg-gray-100",
-  img: "w-full h-auto max-h-64 object-cover rounded-lg",
-  altText: "text-gray-500",
+  imageBox: "w-full sm:w-1/2 flex flex-col items-center",
+  img: "w-[300px] h-auto max-h-64 object-cover rounded-lg",
 };
 
 const BGRemoval = () => {
   const [title, setTitle] = useState("");
   const [imageUpload, setImageUpload] = useState("");
+  const [publicId, setPublicId] = useState("");
+  const [imageFormat, setImageFormat] = useState("");
+  const [bgRemovedImageUrl, setBgRemovedImageUrl] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const transformedImageUrl = `https://res.cloudinary.com/drgztn5ek/image/upload/e_background_removal/${publicId}.${imageFormat}`;
+
+    setBgRemovedImageUrl(transformedImageUrl);
+
     console.log("Title:", title);
     console.log("Uploaded Image URL:", imageUpload);
-    alert("Background removal requested! Check the console for logged values.");
+    console.log("Background Removed Image URL:", transformedImageUrl);
+
+    alert("Background removal applied! Check the console for logged values.");
   };
 
   const handleUpload = (result) => {
     if (result.event === "success") {
       const uploadedUrl = result.info.secure_url;
+      const public_id = result.info.public_id;
+      const format = uploadedUrl.split(".").pop();
+
+      setImageFormat(format);
       setImageUpload(uploadedUrl);
+      setPublicId(public_id);
       console.log("Uploaded image URL:", uploadedUrl);
     }
   };
@@ -129,12 +143,26 @@ const BGRemoval = () => {
               )}
             </div>
 
-            <div className={styles.imageBox}>
-              <h2 className="text-lg font-medium mb-3">Background Removed</h2>
-              <div className="w-full h-48 bg-gray-200 flex items-center justify-center rounded-lg">
-                <span className="text-gray-500">Processed Image Preview</span>
+            {/* Background Removed Image Display */}
+            {bgRemovedImageUrl && (
+              <div className={styles.imageBox}>
+                <h2 className="text-lg font-medium mb-3">
+                  Background Removed Image
+                </h2>
+                <img
+                  src={bgRemovedImageUrl}
+                  alt="Background Removed Image"
+                  className="w-[300px]"
+                />
+                <a
+                  href={bgRemovedImageUrl}
+                  download
+                  className="text-blue-500 hover:underline mt-3"
+                >
+                  Download
+                </a>
               </div>
-            </div>
+            )}
           </div>
         </div>
       )}

@@ -1,3 +1,4 @@
+// working
 "use client";
 
 import { CldUploadWidget } from "next-cloudinary";
@@ -18,30 +19,44 @@ const styles = {
   uploadArea:
     "border-dashed border-4 border-[var(--primary-purple)] flex items-center justify-center h-48 rounded-lg cursor-pointer hover:border-[var(--to)] transition-colors duration-300",
   uploadButton:
-    "  px-4 py-2 rounded-lg shadow hover:opacity-90 transition-opacity focus:outline-none focus:ring-4 focus:ring-[var(--primary-purple)]",
+    "px-4 py-2 rounded-lg shadow hover:opacity-90 transition-opacity focus:outline-none focus:ring-4 focus:ring-[var(--primary-purple)]",
   imagesContainer:
     "mt-6 flex flex-col sm:flex-row space-y-6 sm:space-y-0 sm:space-x-6",
-  imageBox:
-    "w-full sm:w-1/2 flex flex-col items-center justify-center border border-gray-300 h-64 rounded-lg bg-gray-100",
-  img: "w-full h-auto max-h-64 object-cover rounded-lg",
-  altText: "text-gray-500",
+  imageBox: "w-full sm:w-1/2 flex flex-col items-center",
+  img: "w-[300px] h-auto max-h-64 object-cover rounded-lg",
 };
 
 const GenerativeRestore = () => {
   const [title, setTitle] = useState("");
   const [imageUpload, setImageUpload] = useState("");
+  const [publicId, setPublicId] = useState("");
+  const [imageFormat, setImageFormat] = useState("");
+  const [restoredUrl, setRestoredUrl] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Construct the transformation URL based on the publicId
+    const transformedImageUrl = `https://res.cloudinary.com/drgztn5ek/image/upload/e_gen_restore/${publicId}.${imageFormat}`;
+
+    setRestoredUrl(transformedImageUrl);
+
     console.log("Title:", title);
     console.log("Uploaded Image URL:", imageUpload);
+    console.log("Restored Image URL:", transformedImageUrl);
     alert("Image restoration requested! Check the console for logged values.");
   };
 
   const handleUpload = (result) => {
     if (result.event === "success") {
       const uploadedUrl = result.info.secure_url;
+      const public_id = result.info.public_id;
+      const format = uploadedUrl.split(".").pop();
+
       setImageUpload(uploadedUrl);
+      setPublicId(public_id);
+      setImageFormat(format);
+
       console.log("Uploaded image URL:", uploadedUrl);
     }
   };
@@ -118,24 +133,30 @@ const GenerativeRestore = () => {
 
       {/* Uploaded Image Display */}
       {imageUpload && (
-        <div className={styles.container}>
-          <div className={styles.imagesContainer}>
-            <div className={styles.imageBox}>
-              <h2 className="text-lg font-medium mb-3">Original Image</h2>
-              {imageUpload ? (
-                <img src={imageUpload} alt="Uploaded" className={styles.img} />
-              ) : (
-                <p className={styles.altText}>Awaited...</p>
-              )}
-            </div>
-
-            <div className={styles.imageBox}>
-              <h2 className="text-lg font-medium mb-3">Restored Image</h2>
-              <div className="w-full h-48 bg-gray-200 flex items-center justify-center rounded-lg">
-                <span className="text-gray-500">Restored Image Preview</span>
-              </div>
-            </div>
+        <div className={styles.imagesContainer}>
+          <div className={styles.imageBox}>
+            <h2 className="text-lg font-medium mb-3">Original Image</h2>
+            {imageUpload ? (
+              <img src={imageUpload} alt="Uploaded" className={styles.img} />
+            ) : (
+              <p className={styles.altText}>Awaited...</p>
+            )}
           </div>
+
+          {/* Restored Image Display */}
+          {restoredUrl && (
+            <div className={styles.imageBox}>
+              <h2 className="text-lg font-medium mb-3">Transformed Image</h2>
+              <img src={restoredUrl} alt="Transformed" className="w-[300px]" />
+              <a
+                href={restoredUrl}
+                download
+                className="text-blue-500 hover:underline mt-3"
+              >
+                Download
+              </a>
+            </div>
+          )}
         </div>
       )}
     </div>
