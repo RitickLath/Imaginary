@@ -12,7 +12,7 @@ export default clerkMiddleware((auth, req) => {
     console.log(
       "User is logged in and trying to access a public route, redirecting to /"
     );
-    return NextResponse.redirect(new URL("/", currentUrl));
+    return NextResponse.redirect(new URL("/home", currentUrl));
   }
 
   // If the user is not logged in and accessing a protected route, redirect to the sign-up page
