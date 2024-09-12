@@ -50,7 +50,7 @@ const menus = [
   { name: "Generative Replace", link: "/generative-replace", icon: <FaEdit /> },
 ];
 
-const Sidebar = () => {
+const Sidebar = async () => {
   const { userId } = auth();
 
   return (

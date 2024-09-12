@@ -1,6 +1,8 @@
 // working
 "use client";
 
+import { UserDetailUpdate } from "@/app/actions/user";
+import { useAuth } from "@clerk/nextjs";
 import { CldUploadWidget } from "next-cloudinary";
 import React, { useState } from "react";
 import { FaRuler } from "react-icons/fa";
@@ -37,22 +39,23 @@ const Sharpen = () => {
   const [publicId, setPublicId] = useState("");
   const [imageFormat, setImageFormat] = useState("");
   const [transformedUrl, setTransformedUrl] = useState("");
+  const { userId } = useAuth();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const result = await UserDetailUpdate(userId, imageUpload);
+    if (result === "Insufficient credits.") {
+      alert(
+        "OOPS! Credits have ended, please buy some to continue with edits."
+      );
+      return;
+    }
 
     // Construct the transformation URL based on the selected mode and strength
     const transformation = `e_sharpen:${strength}`;
     const transformedImageUrl = `https://res.cloudinary.com/drgztn5ek/image/upload/${transformation}/${publicId}.${imageFormat}`;
 
     setTransformedUrl(transformedImageUrl);
-
-    console.log("Mode:", mode);
-    console.log("Strength:", strength);
-    console.log("Uploaded Image URL:", imageUpload);
-
-    console.log("Transformed Image URL:", transformedImageUrl);
-    // alert("Sharpen transformation applied! Check the transformed image.");
   };
 
   const handleUpload = (result) => {

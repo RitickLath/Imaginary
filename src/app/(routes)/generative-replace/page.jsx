@@ -1,6 +1,8 @@
 // working
 "use client";
 
+import { UserDetailUpdate } from "@/app/actions/user";
+import { useAuth } from "@clerk/nextjs";
 import { CldUploadWidget } from "next-cloudinary";
 import React, { useState } from "react";
 import { FaEdit } from "react-icons/fa";
@@ -33,9 +35,17 @@ const GenerativeReplace = () => {
   const [imageUpload, setImageUpload] = useState("");
   const [publicId, setPublicId] = useState("");
   const [transformedUrl, setTransformedUrl] = useState("");
+  const { userId } = useAuth();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const result = await UserDetailUpdate(userId, imageUpload);
+    if (result === "Insufficient credits.") {
+      alert(
+        "OOPS! Credits have ended, please buy some to continue with edits."
+      );
+      return;
+    }
 
     // Replace spaces with "%20" for URL encoding
     const encodedItemToReplace = itemToReplace.replace(/\s+/g, "%20");

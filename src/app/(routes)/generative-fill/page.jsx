@@ -1,6 +1,8 @@
 // working
 "use client";
 
+import { UserDetailUpdate } from "@/app/actions/user";
+import { useAuth } from "@clerk/nextjs";
 import { CldUploadWidget } from "next-cloudinary";
 import React, { useState } from "react";
 import { FaFillDrip } from "react-icons/fa";
@@ -35,12 +37,18 @@ const GenerativeFill = () => {
   const [filledImageUrl, setFilledImageUrl] = useState("");
   const [imageFormat, setImageFormat] = useState("");
   const [publicId, setPublicId] = useState("");
+  const { userId } = useAuth();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
+    const result = await UserDetailUpdate(userId, imageUpload);
+    if (result === "Insufficient credits.") {
+      alert(
+        "OOPS! Credits have ended, please buy some to continue with edits."
+      );
+      return;
+    }
     if (!publicId) {
-      // alert("Please upload an image first!");
       return;
     }
 
@@ -61,13 +69,6 @@ const GenerativeFill = () => {
     const transformedImageUrl = `https://res.cloudinary.com/drgztn5ek/image/upload/c_pad,ar_${aspectRatio},g_center,b_gen_fill/${publicId}.${imageFormat}`;
 
     setFilledImageUrl(transformedImageUrl);
-
-    console.log("Title:", title);
-    console.log("Orientation:", orientation);
-    console.log("Uploaded Image URL:", imageUpload);
-    console.log("Filled Image URL:", transformedImageUrl);
-
-    // alert("Generative fill applied! Check the console for logged values.");
   };
 
   const handleUpload = (result) => {
@@ -78,8 +79,6 @@ const GenerativeFill = () => {
       setImageUpload(uploadedUrl);
       setPublicId(uploadedPublicId);
       setImageFormat(format);
-      console.log("Uploaded image URL:", uploadedUrl);
-      console.log("Uploaded public_id:", uploadedPublicId);
     }
   };
 

@@ -3,7 +3,9 @@
 
 import { CldUploadWidget } from "next-cloudinary";
 import React, { useState } from "react";
+import { useAuth } from "@clerk/nextjs";
 import { FaMagic } from "react-icons/fa";
+import { UserDetailUpdate } from "@/app/actions/user";
 
 const styles = {
   container: "py-6 px-3 lg:px-8 w-full",
@@ -33,14 +35,22 @@ const AIImageEnhancer = () => {
   const [EnhancedImageUrl, setEnhancedImageUrl] = useState("");
   const [imageFormat, setImageFormat] = useState("");
   const [publicId, setPublicId] = useState("");
+  const { userId } = useAuth();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const result = await UserDetailUpdate(userId, imageUpload);
+    if (result === "Insufficient credits.") {
+      alert(
+        "OOPS! Credits have ended, please buy some to continue with edits."
+      );
+      return;
+    }
+
     console.log("Title:", title);
     console.log("Uploaded Image URL:", imageUpload);
     const transformaedUrl = `https://res.cloudinary.com/drgztn5ek/image/upload/e_enhance/${publicId}.${imageFormat}`;
     setEnhancedImageUrl(transformaedUrl);
-    // alert("Image enhancement requested! Check the console for logged values.");
   };
 
   const handleUpload = (result) => {
@@ -51,7 +61,6 @@ const AIImageEnhancer = () => {
       setImageUpload(uploadedUrl);
       setImageFormat(format);
       setPublicId(uploadedPublicId);
-      console.log("Uploaded image URL:", uploadedUrl);
     }
   };
 

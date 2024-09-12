@@ -1,6 +1,8 @@
 // working
 "use client";
 
+import { UserDetailUpdate } from "@/app/actions/user";
+import { useAuth } from "@clerk/nextjs";
 import { CldUploadWidget } from "next-cloudinary";
 import React, { useState } from "react";
 import { FaWrench } from "react-icons/fa";
@@ -32,9 +34,17 @@ const GenerativeRestore = () => {
   const [publicId, setPublicId] = useState("");
   const [imageFormat, setImageFormat] = useState("");
   const [restoredUrl, setRestoredUrl] = useState("");
+  const { userId } = useAuth();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const result = await UserDetailUpdate(userId, imageUpload);
+    if (result === "Insufficient credits.") {
+      alert(
+        "OOPS! Credits have ended, please buy some to continue with edits."
+      );
+      return;
+    }
 
     // Construct the transformation URL based on the publicId
     const transformedImageUrl = `https://res.cloudinary.com/drgztn5ek/image/upload/e_gen_restore/${publicId}.${imageFormat}`;

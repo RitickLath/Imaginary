@@ -1,6 +1,8 @@
 // woking
 "use client";
 
+import { UserDetailUpdate } from "@/app/actions/user";
+import { useAuth } from "@clerk/nextjs";
 import { CldUploadWidget } from "next-cloudinary";
 import React, { useState } from "react";
 import { FaCrop } from "react-icons/fa";
@@ -32,9 +34,17 @@ const RoundCorner = () => {
   const [publicId, setPublicId] = useState("");
   const [imageFormat, setImageFormat] = useState("");
   const [transformedUrl, setTransformedUrl] = useState("");
+  const { userId } = useAuth();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const result = await UserDetailUpdate(userId, imageUpload);
+    if (result === "Insufficient credits.") {
+      alert(
+        "OOPS! Credits have ended, please buy some to continue with edits."
+      );
+      return;
+    }
 
     // Generate transformation URL based on Cloudinary URL format
     const transformedImageUrl = `https://res.cloudinary.com/drgztn5ek/image/upload/ar_1:1,c_auto,g_auto,w_500/r_max/${publicId}.${imageFormat}`;
