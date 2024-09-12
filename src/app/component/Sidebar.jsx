@@ -19,7 +19,7 @@ import { SignOutButton } from "@clerk/nextjs";
 // styles
 const sidebarStyles = {
   container:
-    "fixed w-full sm:w-[15rem] bg-[var(--form-background)] h-[3rem] sm:h-screen border-t-[1.5px] sm:border-t-0 sm:border-r-[1.5px] border-[var(--bordermargin)] flex sm:flex-col",
+    "fixed z-20 w-full sm:w-[15rem] bg-[var(--form-background)] h-[3rem] sm:h-screen border-t-[1.5px] sm:border-t-0 sm:border-r-[1.5px] border-[var(--bordermargin)] flex sm:flex-col",
   menuContainer:
     "bg-[var(--form-background)] w-full sm:w-auto overflow-x-auto sm:overflow-x-visible sm:pb-3",
   menuItemContainer:
