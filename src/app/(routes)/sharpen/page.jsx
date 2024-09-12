@@ -52,18 +52,18 @@ const Sharpen = () => {
     console.log("Uploaded Image URL:", imageUpload);
 
     console.log("Transformed Image URL:", transformedImageUrl);
-    alert("Sharpen transformation applied! Check the transformed image.");
+    // alert("Sharpen transformation applied! Check the transformed image.");
   };
 
   const handleUpload = (result) => {
     if (result.event === "success") {
       const uploadedUrl = result.info.secure_url;
       const public_id = result.info.public_id;
-      const format = uploadedUrl.split(".").pop(); 
+      const format = uploadedUrl.split(".").pop();
 
       setImageUpload(uploadedUrl);
       setPublicId(public_id);
-      setImageFormat(format); 
+      setImageFormat(format);
       console.log(public_id);
       console.log("Uploaded image URL:", uploadedUrl);
       console.log("Image Format:", format);

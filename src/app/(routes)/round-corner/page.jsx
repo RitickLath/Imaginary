@@ -31,7 +31,7 @@ const RoundCorner = () => {
   const [imageUpload, setImageUpload] = useState("");
   const [publicId, setPublicId] = useState("");
   const [imageFormat, setImageFormat] = useState("");
-  const [transformedUrl, setTransformedUrl] = useState(""); 
+  const [transformedUrl, setTransformedUrl] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -45,7 +45,7 @@ const RoundCorner = () => {
     console.log("Uploaded Image URL:", imageUpload);
     console.log("Transformed Image URL:", transformedImageUrl);
 
-    alert("Transformation applied! Check the transformed image.");
+    // alert("Transformation applied! Check the transformed image.");
   };
 
   const handleUpload = (result) => {

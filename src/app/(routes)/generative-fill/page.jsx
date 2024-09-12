@@ -40,7 +40,7 @@ const GenerativeFill = () => {
     e.preventDefault();
 
     if (!publicId) {
-      alert("Please upload an image first!");
+      // alert("Please upload an image first!");
       return;
     }
 
@@ -54,7 +54,7 @@ const GenerativeFill = () => {
         aspectRatio = "16:9";
         break;
       default:
-        aspectRatio = "1:1"; 
+        aspectRatio = "1:1";
     }
 
     // Use the stored public_id in the transformed URL
@@ -67,7 +67,7 @@ const GenerativeFill = () => {
     console.log("Uploaded Image URL:", imageUpload);
     console.log("Filled Image URL:", transformedImageUrl);
 
-    alert("Generative fill applied! Check the console for logged values.");
+    // alert("Generative fill applied! Check the console for logged values.");
   };
 
   const handleUpload = (result) => {

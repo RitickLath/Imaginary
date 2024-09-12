@@ -52,7 +52,7 @@ const GenerativeReplace = () => {
     console.log("Uploaded Image URL:", imageUpload);
     console.log("Transformed Image URL:", transformedImageUrl);
 
-    alert("Generative Replace action applied! Check the transformed image.");
+    // alert("Generative Replace action applied! Check the transformed image.");
   };
 
   const handleUpload = (result) => {

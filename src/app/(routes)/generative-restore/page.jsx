@@ -44,7 +44,7 @@ const GenerativeRestore = () => {
     console.log("Title:", title);
     console.log("Uploaded Image URL:", imageUpload);
     console.log("Restored Image URL:", transformedImageUrl);
-    alert("Image restoration requested! Check the console for logged values.");
+    // alert("Image restoration requested! Check the console for logged values.");
   };
 
   const handleUpload = (result) => {

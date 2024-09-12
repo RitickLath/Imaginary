@@ -44,7 +44,7 @@ const BGRemoval = () => {
     console.log("Uploaded Image URL:", imageUpload);
     console.log("Background Removed Image URL:", transformedImageUrl);
 
-    alert("Background removal applied! Check the console for logged values.");
+    // alert("Background removal applied! Check the console for logged values.");
   };
 
   const handleUpload = (result) => {
@@ -67,6 +67,7 @@ const BGRemoval = () => {
         <h1 className={styles.title}>
           <FaImage />
           <span>BACKGROUND REMOVAL</span>
+          <span>(Currently not working 🥲)</span>
         </h1>
       </div>
 

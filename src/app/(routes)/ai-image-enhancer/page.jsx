@@ -40,7 +40,7 @@ const AIImageEnhancer = () => {
     console.log("Uploaded Image URL:", imageUpload);
     const transformaedUrl = `https://res.cloudinary.com/drgztn5ek/image/upload/e_enhance/${publicId}.${imageFormat}`;
     setEnhancedImageUrl(transformaedUrl);
-    alert("Image enhancement requested! Check the console for logged values.");
+    // alert("Image enhancement requested! Check the console for logged values.");
   };
 
   const handleUpload = (result) => {

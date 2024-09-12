@@ -9,17 +9,17 @@ export default clerkMiddleware((auth, req) => {
 
   // If the user is logged in and accessing a public route, redirect to the home page
   if (userId && isPublicRoute(req)) {
-    console.log(
-      "User is logged in and trying to access a public route, redirecting to /"
-    );
+    // console.log(
+    //   "User is logged in and trying to access a public route, redirecting to /"
+    // );
     return NextResponse.redirect(new URL("/home", currentUrl));
   }
 
   // If the user is not logged in and accessing a protected route, redirect to the sign-up page
   if (!userId && !isPublicRoute(req)) {
-    console.log(
-      "User is not logged in and trying to access a protected route, redirecting to /sign-up"
-    );
+    // console.log(
+    //   "User is not logged in and trying to access a protected route, redirecting to /sign-up"
+    // );
     return NextResponse.redirect(new URL("/sign-up", currentUrl));
   }
 
