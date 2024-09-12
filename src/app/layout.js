@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from "./component/Sidebar";
 import Navbar from "./component/Navbar";
+import { dark } from "@clerk/themes";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,14 +17,18 @@ export const metadata = {
 // Styles
 const layoutStyles = {
   bodyWrapper: "mt-[4rem] w-full overflow-x-hidden min-h-screen flex",
-  sidebarMargin: "ml-[3rem] sm:ml-[15rem] flex justify-center w-full",
+  sidebarMargin: "sm:ml-[15rem] flex justify-center w-full",
   contentContainer: "w-full max-w-5xl",
   minHeight: { minHeight: "calc(100vh - 4rem)" },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        baseTheme: [dark],
+      }}
+    >
       <html lang="en">
         <body className={inter.className}>
           <Navbar />
