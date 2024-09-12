@@ -17,7 +17,7 @@ export const metadata = {
 // Styles
 const layoutStyles = {
   bodyWrapper: "mt-[4rem] w-full overflow-x-hidden min-h-screen flex",
-  sidebarMargin: "sm:ml-[15rem] flex justify-center w-full",
+  sidebarMargin: "sm:ml-[15rem] mt-12 sm:mt-0 flex justify-center w-full",
   contentContainer: "w-full max-w-5xl",
   minHeight: { minHeight: "calc(100vh - 4rem)" },
 };
