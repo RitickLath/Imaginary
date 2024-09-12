@@ -15,7 +15,6 @@
   --text-color: #edf2f7;
   --background-color: #1f1f1f;
   --bordermargin: #3a3b3c;
-  --clerkmode: "dark";
 }
 
 /* Light Mode Styles */
@@ -31,10 +30,6 @@
   --text-color: #645d5d;
   --background-color: #ffffff;
   --bordermargin: #cccccc;
-  --clerkmode: "";
-
-  /* --from: #000000;
-  --to: #f1fea4; */
 }
 
 body {
