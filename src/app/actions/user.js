@@ -1,6 +1,5 @@
 "use server";
 
-import { PrismaClient } from "@prisma/client";
 import prisma from "../prisma";
 
 export async function UserDetailUpdate(userId, url) {
@@ -10,7 +9,7 @@ export async function UserDetailUpdate(userId, url) {
 
   if (!isUser) {
     // User doesn't exist, create a new user
-    const isUser = await Prisma.saaSUser.create({
+    const isUser = await prisma.saaSUser.create({
       data: {
         clerkId: userId,
         credits: 14,
@@ -30,7 +29,7 @@ export async function UserDetailUpdate(userId, url) {
     const updatedUrls = [...isUser.editedUrls, url];
     const newCredit = creditAvailable - 1;
 
-    await Prisma.saaSUser.update({
+    await prisma.saaSUser.update({
       where: { clerkId: userId },
       data: {
         credits: newCredit,
