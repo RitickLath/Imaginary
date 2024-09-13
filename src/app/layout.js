@@ -41,7 +41,7 @@ export default function RootLayout({ children }) {
               <div className={layoutStyles.contentContainer}>
                 {children}
                 <h1 className="align-text-bottom text-sm font-medium text-center pb-2 text-[var(--primary-purple)]">
-                  Made with 💝 by Ritick Lath.
+                  Made with 💖 by Ritick Lath.
                 </h1>
               </div>
             </div>
