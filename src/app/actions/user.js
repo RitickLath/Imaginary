@@ -1,11 +1,10 @@
 "use server";
 
 import { PrismaClient } from "@prisma/client";
-
-const Prisma = new PrismaClient();
+import prisma from "../prisma";
 
 export async function UserDetailUpdate(userId, url) {
-  const isUser = await Prisma.saaSUser.findUnique({
+  const isUser = await prisma.saaSUser.findUnique({
     where: { clerkId: userId },
   });
 
@@ -43,4 +42,3 @@ export async function UserDetailUpdate(userId, url) {
     return "User details updated.";
   }
 }
-
