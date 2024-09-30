@@ -18,7 +18,7 @@ export const metadata = {
 const layoutStyles = {
   bodyWrapper: "mt-[4rem] w-full overflow-x-hidden min-h-screen flex",
   sidebarMargin: "sm:ml-[15rem] mt-12 sm:mt-0 flex justify-center w-full",
-  contentContainer: "w-full max-w-5xl",
+  contentContainer: "relative w-full max-w-5xl",
   minHeight: { minHeight: "calc(100vh - 4rem)" },
 };
 
@@ -40,7 +40,7 @@ export default function RootLayout({ children }) {
             <div className={layoutStyles.sidebarMargin}>
               <div className={layoutStyles.contentContainer}>
                 {children}
-                <h1 className="align-text-bottom text-sm font-medium text-center pb-2 text-[var(--primary-purple)]">
+                <h1 className="absolute bottom-2 left-[30%] md:left-[40%] text-sm font-medium text-center pb-2 text-[var(--primary-purple)]">
                   Made with 💖 by Ritick Lath.
                 </h1>
               </div>

@@ -1,5 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import { getUserCreditsAndUrls } from "@/app/actions/user";
+import { useAuth } from "@clerk/nextjs";
+import React, { useEffect, useState } from "react";
 import { FaCreditCard, FaImage } from "react-icons/fa";
 
 const styles = {
@@ -18,18 +20,31 @@ const styles = {
   recentEditsContainer: "mt-8",
   sectionTitle: "text-lg font-semibold text-[var(--form-text)] mb-4",
   imageListContainer: "mt-4",
-  imageItem: "mb-4 flex items-center",
+  imageItem: "mb-4 flex items-center cursor-pointer",
   imageThumbnail: "w-16 h-16 object-cover rounded-lg shadow-md",
   imageDescription: "ml-4 text-[var(--text-muted)] text-sm",
 };
 
 const Profile = () => {
-  // Example state for recent edits
-  const [recentEdits, setRecentEdits] = useState([
-    { id: 1, url: "https://via.placeholder.com/150", description: "Edit 1" },
-    { id: 2, url: "https://via.placeholder.com/150", description: "Edit 2" },
-    { id: 3, url: "https://via.placeholder.com/150", description: "Edit 3" },
-  ]);
+  // State for user's credits and edited URLs
+  const [credits, setCredits] = useState(0);
+  const [editedUrls, setEditedUrls] = useState([]);
+  const { userId } = useAuth();
+
+  // Fetch user details on component mount
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      if (userId) {
+        const result = await getUserCreditsAndUrls(userId);
+        if (result) {
+          setCredits(result.credits);
+          setEditedUrls(result.editedUrls);
+          console.log(result);
+        }
+      }
+    };
+    fetchUserDetails();
+  }, [userId]);
 
   return (
     <div className={styles.container}>
@@ -46,7 +61,9 @@ const Profile = () => {
           <div className={styles.creditInfo}>
             <div className="flex items-center">
               <FaCreditCard className="text-2xl text-gray-300" />
-              <div className={styles.creditAmount}>Credits Available: 15</div>
+              <div className={styles.creditAmount}>
+                Credits Available: {credits}
+              </div>
             </div>
           </div>
 
@@ -54,7 +71,9 @@ const Profile = () => {
           <div className={styles.manipulationsInfo}>
             <div className="flex items-center">
               <FaImage className="text-2xl text-gray-300" />
-              <div className={styles.manipulationsCount}>Images Edited: 20</div>
+              <div className={styles.manipulationsCount}>
+                Images Edited: {editedUrls.length}
+              </div>
             </div>
           </div>
         </div>
@@ -63,23 +82,29 @@ const Profile = () => {
         <div className={styles.recentEditsContainer}>
           <div className={styles.sectionTitle}>Recent Edits</div>
           <div className={styles.imageListContainer}>
-            {recentEdits.map((edit) => (
-              <div key={edit.id} className={styles.imageItem}>
-                <img
-                  src={edit.url}
-                  alt={`Recent Edit ${edit.id}`}
-                  className={styles.imageThumbnail}
-                />
-                <div className={styles.imageDescription}>
-                  {edit.description}
+            {editedUrls.length > 0 ? (
+              editedUrls.map((url, index) => (
+                <div
+                  key={index}
+                  className={styles.imageItem}
+                  onClick={() => window.open(url, "_blank")}
+                >
+                  <img
+                    src={url}
+                    alt={`Edit ${index + 1}`}
+                    className={styles.imageThumbnail}
+                  />
+                  <div className={styles.imageDescription}>
+                    Edit {index + 1}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))
+            ) : (
+              <div className="text-gray-500">No recent edits found.</div>
+            )}
           </div>
         </div>
       </div>
-
-      
     </div>
   );
 };

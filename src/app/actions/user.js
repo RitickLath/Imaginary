@@ -41,3 +41,19 @@ export async function UserDetailUpdate(userId, url) {
     return "User details updated.";
   }
 }
+
+export async function getUserCreditsAndUrls(userId) {
+  const isUser = await prisma.saaSUser.findUnique({
+    where: { clerkId: userId },
+    select: {
+      credits: true, // Fetch only the credits
+      editedUrls: true, // Fetch only the editedUrls
+    },
+  });
+
+  if (!isUser) {
+    return { message: "User not found", credits: 0, editedUrls: [] };
+  }
+
+  return { credits: isUser.credits, editedUrls: isUser.editedUrls };
+}
