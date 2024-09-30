@@ -1,6 +1,10 @@
 
 # Imaginary
 
+## Live Video
+https://github.com/user-attachments/assets/4bc10fb4-47d8-4f4c-8b96-65a5dca82cbd
+
+
 Imaginary is an image editing application built with Next.js that allows users to perform a wide variety of image transformations using Cloudinary's AI features. Users can round corners, enhance images, sharpen details, remove backgrounds, and utilize generative AI features to restore, fill, and replace parts of an image. The application is integrated with **Clerk** for authentication, ensuring that the editing features are protected routes.
 
 ## Features
